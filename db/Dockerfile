@@ -1,0 +1,7 @@
+FROM postgres:15.4-alpine
+
+ENV POSTGRES_USER=pg-docker
+ENV POSTGRES_PASSWORD=secretpass
+ENV POSTGRES_DB=todo-db
+
+EXPOSE 5432
