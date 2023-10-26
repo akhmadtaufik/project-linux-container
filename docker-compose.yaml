@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  todo-flask:
+    build:
+      context: ./todo-app
+      dockerfile: Dockerfile
+    container_name: todo-app-container
+    ports:
+      - 5005:5000
+    command: bash -c "flask db init && flask db migrate && flask db upgrade && flask run"
+    depends_on:
+      - todo-db
+    networks:
+      - todo-network
+    restart: always
+
+  todo-db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: todo-db-container
+    ports:
+      - 5435:5432
+    volumes:
+      - todo-volume:/var/lib/postgresql/data
+    networks:
+      todo-network:
+        aliases:
+          - db-app
+
+networks:
+  todo-network:
+    name: todo-network
+
+volumes:
+  todo-volume:
+    name: todo-volume

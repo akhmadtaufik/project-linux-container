@@ -1,6 +1,6 @@
-FROM postgres:15.4-alpine
+FROM postgres:15.4
 
-ENV POSTGRES_USER=pg-docker
+ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=secretpass
 ENV POSTGRES_DB=todo-db
 

@@ -1,16 +1,10 @@
-FROM python:3.10
+FROM python:3.9.16
 
 COPY . ./todo-app
 
 WORKDIR /todo-app
 
 RUN pip install -r requirements.txt
-
-RUN flask db init
-
-RUN flask db migrate
-
-RUN flask db upgrade
 
 EXPOSE 5000
 
